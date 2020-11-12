@@ -106,7 +106,7 @@ class Car {
     let gallon = distanceTravel / this.milesPerGallon;
     this.tank -= gallon;
 
-    if (this.tank === 0) {
+    if ((this.tank = 0)) {
       return `I ran out of fuel at ${this.odometer} miles!`;
     }
   }
@@ -150,15 +150,28 @@ class Lambdasian {
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
 class Instructor extends Lambdasian {
-  constructor(childAttr) {
-    super(childAttr);
-    this.isChild = childAttr.isChild;
+  constructor(isChild) {
+    super(isChild);
+    this.child = isChild.child;
+    this.speciality = isChild.speciality;
+    this.favLanguage = isChild.favLanguage;
+    this.catchPhrase = isChild.catchPhrase;
   }
-  checkIfChild() {
-    if (this.isChild) {
-    }
+
+  demo(subject) {
+    return `Today we are learning about ${subject.speciality}`;
+  }
+
+  grade(student, subject) {
+    return `${student.name} receives a perfect score on ${subject}`;
   }
 }
+
+const instructor = new Instructor({
+  specialty: "javaScript",
+  favLanguage: "redux",
+  catchPhrase: "Don't forget the homies.",
+});
 
 /*
   TASK 5
