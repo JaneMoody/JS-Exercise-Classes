@@ -95,19 +95,14 @@ class Car {
   }
 
   drive(distance) {
-    let distanceWanted = this.tank * this.milesPerGallon;
-    let distanceTravel = distance;
-
-    if (distance > distanceWanted) {
-      distanceTravel = distanceWanted;
-    }
-
-    this.odometer += distanceTravel;
-    let gallon = distanceTravel / this.milesPerGallon;
-    this.tank -= gallon;
-
-    if ((this.tank = 0)) {
+    if (distance > this.tank * this.milesPerGallon) {
+      this.odometer = this.odometer + this.tank * this.milesPerGallon;
+      this.tank = 0;
       return `I ran out of fuel at ${this.odometer} miles!`;
+    } else {
+      this.odometer = this.odometer + distance;
+      this.tank =
+        (this.tank * this.milesPerGallon - distance) / this.milesPerGallon;
     }
   }
 }
@@ -197,13 +192,13 @@ class Student extends Lambdasian {
     this.favSubjects = object.favSubjects;
   }
   listSubjects() {
-    return `Loving ${this.favSubjects}!`;
+    return `Loving ${this.favSubjects}, ${this.favSubjects}, and ${this.favSubjects}!`;
   }
   PRAssignment(subject) {
-    return `${Student.name} has submitted a PR for ${subject}`;
+    return `${this.name} has submitted a PR for ${subject}`;
   }
   sprintChallenge(subject) {
-    return `${Student.name} has begun sprint challenge on ${subject}`;
+    return `${this.name} has begun sprint challenge on ${subject}`;
   }
 }
 
