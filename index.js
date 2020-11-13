@@ -99,7 +99,7 @@ class Car {
     let distanceTravel = distance;
 
     if (distance > distanceWanted) {
-      distanceTravel = distanceTravel;
+      distanceTravel = distanceWanted;
     }
 
     this.odometer += distanceTravel;
@@ -150,16 +150,15 @@ class Lambdasian {
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
 class Instructor extends Lambdasian {
-  constructor(isChild) {
-    super(isChild);
-    this.child = isChild.child;
-    this.speciality = isChild.speciality;
-    this.favLanguage = isChild.favLanguage;
-    this.catchPhrase = isChild.catchPhrase;
+  constructor(object) {
+    super(object);
+    this.speciality = object.speciality;
+    this.favLanguage = object.favLanguage;
+    this.catchPhrase = object.catchPhrase;
   }
 
   demo(subject) {
-    return `Today we are learning about ${subject.speciality}`;
+    return `Today we are learning about ${subject}`;
   }
 
   grade(student, subject) {
@@ -188,8 +187,17 @@ const instructor = new Instructor({
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {}
+  class Student extends Lambdasian {
+    constructor(object) {
+      super(object);
+      this.previousBackground = object.previousBackground;
+      this.className = object.className;
+      this.favSubjects = object.favSubjects;
+}
 
+listSubjects(){
+  return `Loving ${this.favSubjects}!`;
+}
 /*
   TASK 6
     - Write a ProjectManager class extending Instructor.
@@ -203,7 +211,13 @@ class Student {}
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {}
+class ProjectManager extends Instructor{
+  constructor(object){
+    super(object){
+      gradClassName =
+    }
+  }
+}
 
 /*
   STRETCH PROBLEM (no tests!)
