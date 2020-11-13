@@ -157,6 +157,8 @@ class Instructor extends Lambdasian {
     this.catchPhrase = object.catchPhrase;
   }
 
+  Instructor.prototype = Object.create(Lambdasian.prototype);
+
   demo(subject) {
     return `Today we are learning about ${subject}`;
   }
@@ -214,8 +216,9 @@ listSubjects(){
 class ProjectManager extends Instructor{
   constructor(object){
     super(object){
-      gradClassName =
-    }
+      this.gradClassName = object.gradClassName;
+      this.favInstructor = object.faveInstructor;
+       }
   }
 }
 
