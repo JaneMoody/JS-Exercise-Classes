@@ -157,8 +157,6 @@ class Instructor extends Lambdasian {
     this.catchPhrase = object.catchPhrase;
   }
 
-  Instructor.prototype = Object.create(Lambdasian.prototype);
-
   demo(subject) {
     return `Today we are learning about ${subject}`;
   }
@@ -167,6 +165,8 @@ class Instructor extends Lambdasian {
     return `${student.name} receives a perfect score on ${subject}`;
   }
 }
+
+Instructor.prototype = Object.create(Lambdasian.prototype);
 
 const instructor = new Instructor({
   specialty: "javaScript",
@@ -189,17 +189,26 @@ const instructor = new Instructor({
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-  class Student extends Lambdasian {
-    constructor(object) {
-      super(object);
-      this.previousBackground = object.previousBackground;
-      this.className = object.className;
-      this.favSubjects = object.favSubjects;
+class Student extends Lambdasian {
+  constructor(object) {
+    super(object);
+    this.previousBackground = object.previousBackground;
+    this.className = object.className;
+    this.favSubjects = object.favSubjects;
+  }
+  listSubjects() {
+    return `Loving ${this.favSubjects}!`;
+  }
+  PRAssignment(subject) {
+    return `${Student.name} has submitted a PR for ${subject}`;
+  }
+  sprintChallenge(subject) {
+    return `${Student.name} has begun sprint challenge on ${subject}`;
+  }
 }
 
-listSubjects(){
-  return `Loving ${this.favSubjects}!`;
-}
+Student.prototype = Object.create(Lambdasian.prototype);
+
 /*
   TASK 6
     - Write a ProjectManager class extending Instructor.
@@ -213,14 +222,21 @@ listSubjects(){
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager extends Instructor{
-  constructor(object){
-    super(object){
-      this.gradClassName = object.gradClassName;
-      this.favInstructor = object.faveInstructor;
-       }
+class ProjectManager extends Instructor {
+  constructor(object) {
+    super(object);
+    this.gradClassName = object.gradClassName;
+    this.favInstructor = object.faveInstructor;
+  }
+  standUp(channel) {
+    return `${this.name} announces to ${channel}, @channel standy times!`;
+  }
+  debugsCode(student, subject) {
+    return `${this.name} debugs ${student.name}'s code on ${subject}`;
   }
 }
+
+ProjectManager.prototype = Object.create(Instructor.prototype);
 
 /*
   STRETCH PROBLEM (no tests!)
